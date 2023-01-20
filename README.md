@@ -20,7 +20,7 @@ Then, for aks2 and aks3, run (update the IP accordingly): ``kumactl install cont
                                 --kds-global-address grpcs://192.168.0.1:5685 | kubectl apply -f ``
 
 After deployment, add the following Annotation to the service definition
-	service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+	``service.beta.kubernetes.io/azure-load-balancer-internal: "true"``
 
 
 
