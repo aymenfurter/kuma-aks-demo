@@ -1,0 +1,12 @@
+apiVersion: kuma.io/v1alpha1
+kind: TrafficPermission
+mesh: default
+metadata:
+  name: allow-single-direction-traffic
+spec:
+  sources:
+    - match:
+        kuma.io/service: 'service-2_service2_svc_80'
+  destinations:
+    - match:
+        kuma.io/service: 'service-3_service3_svc_80'

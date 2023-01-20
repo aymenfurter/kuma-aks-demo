@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: service3
+  labels:
+    kuma.io/sidecar-injection: enabled
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-3
+  namespace: service3
+spec:
+  selector:
+    app: service-3
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-3
+  namespace: service3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-3
+  template:
+    metadata:
+      labels:
+        app: service-3
+    spec:
+      containers:
+      - name: service-3
+        image: <acr>.azurecr.io/service-3
+        ports:
+        - containerPort: 80
